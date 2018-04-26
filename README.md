@@ -35,3 +35,7 @@ In production env, i suggest to open nginx in dockerfile-web(Don't forget write 
 
 [flask](http://flask.pocoo.org)
 
+## License
+
+This project is licensed under the terms of the Apache license.
+
