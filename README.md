@@ -21,6 +21,8 @@ Flask-Migrate
 Flask-SQLAlchemy
 ```
 
+Use mysql. you can change it easily if you like.
+
 in docker, this has also something interesting, I set `net.core.somaxconn` to 1024 to support more connections.
 
 ## production
