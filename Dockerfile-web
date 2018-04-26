@@ -1,0 +1,32 @@
+# VERSION 1
+# Author: sculaji
+# Base image
+FROM ubuntu:xenial
+
+ENV HOME /root
+# make install more easily
+ENV DEBIAN_FRONTEND noninteractive
+
+WORKDIR $HOME
+
+# MAINTAINER
+
+MAINTAINER flask-docker-quickstart minhaokong@gmail.com
+
+# command to init image
+
+# change apt source-list
+
+RUN sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list
+
+# install some dep
+
+RUN apt update -y && apt install -y git python3-pip python-pip nginx && apt-get clean && \
+    rm -rf /var/lib/apt-lists/*
+# to avoid re-install python models, see https://stackoverflow.com/questions/25305788/how-to-avoid-reinstalling-packages-when-building-docker-image-for-python-project
+ADD requirements.txt $HOME/requirements.txt
+# insatll python-dep, use official mirrors
+RUN pip3 install -r requirements.txt -i https://pypi.douban.com/simple/
+# if use nginx, uncomment below line.
+#ADD nginx.conf /etc/nginx/conf.d/nginx.conf
+EXPOSE 8080

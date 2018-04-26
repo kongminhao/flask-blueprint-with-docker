@@ -1,0 +1,29 @@
+version: '3'
+services:
+  dockerweb:
+    build:
+      context: .
+      dockerfile: Dockerfile-web
+    ports:
+      - "80:8080"
+    volumes:
+      - .:/root
+    depends_on:
+      - mysql
+    sysctls:
+      - net.core.somaxconn=1024
+    command: ["./wait-for-it.sh", "mysql:3306", "--", "/bin/bash", "start.sh"]
+  mysql:
+    build:
+      context: .
+      dockerfile: Dockerfile-mysql
+    restart: always
+    environment:
+      # only for test, allow empty password
+      # oh, if hacker hack the host, password is no sense.
+      # fix mysql character set error, I think it will  be success
+      LANG: 'C.UTF-8'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_DATABASE: 'xxxx'
+    volumes:
+      - /opt/mysql_data:/var/lib/mysql
