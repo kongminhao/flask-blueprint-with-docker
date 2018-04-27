@@ -3,8 +3,8 @@
 # @Time    : 26/04/2018 7:51 PM
 
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixin, login_manager
-from app import db
+from flask_login import UserMixin
+from app import db, login_manager
 
 
 # flask login manager
