@@ -15,7 +15,7 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://mysql:@mysql/xxx'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:@mysql/xxx'
     WTF_CSRF_ENABLED = False
 
 config = {
